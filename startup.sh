@@ -1,5 +1,22 @@
 #!/bin/sh
 
-git clone https://github.com/Chernyh1994/poster-client-react.git
+WEB=https://github.com/Chernyh1994/poster-client-react.git
+API=https://github.com/Chernyh1994/poster-laravel-api-server.git
 
-exit -1
+if [ -d ./poster-client-react ]
+then
+  git pull ./poster-client-react
+else
+  git clone $WEB
+fi
+
+if [ -d ./poster-laravel-api-server ]
+then
+   git pull ./poster-laravel-api-server
+else
+  git clone $API
+fi
+
+docker-compose up --build
+
+exit 0
