@@ -5,14 +5,16 @@ API=https://github.com/Chernyh1994/poster-laravel-api-server.git
 
 if [ -d ./poster-client-react ]
 then
-  git pull ./poster-client-react
+  cd poster-client-react && git checkout master && git pull
+  cd ..
 else
   git clone $WEB
 fi
 
 if [ -d ./poster-laravel-api-server ]
 then
-   git pull ./poster-laravel-api-server
+  cd poster-laravel-api-server && git checkout master && git pull
+  cd ..
 else
   git clone $API
 fi
