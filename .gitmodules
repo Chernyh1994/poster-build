@@ -1,6 +1,6 @@
-[submodule "client"]
-	path = client
-	url = https://github.com/Chernyh1994/poster-client-react.git
-[submodule "server"]
-	path = server
-	url = https://github.com/Chernyh1994/poster-laravel-api-server.git
+[submodule "poster-laravel-api-server"]
+	path = poster-laravel-api-server
+	url = git://github.com/Chernyh1994/poster-laravel-api-server
+[submodule "poster-client-react"]
+	path = poster-client-react
+	url = git://github.com/Chernyh1994/poster-client-react
