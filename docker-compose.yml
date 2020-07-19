@@ -1,8 +1,35 @@
 version: '3'
 services:
-  web:
-    build: .
+
+  # Nginx proxy server
+  # Image: https://hub.docker.com/_/nginx
+  proxy:
+    image: nginx
+    container_name: proxy
+    restart: unless-stopped
     ports:
-      - "3000:3000"
+      - "8080:8080"
+    environment:
+      FRONTEND_SERVER_HOST: "localhost"
+      FRONTEND_SERVER_PORT: "8080"
+    command: /bin/bash -c "envsubst < /etc/nginx/http-server.template.conf > /etc/nginx/conf.d/http-server.conf && exec nginx -g 'daemon off;'"
     volumes:
-      - .:/web
+      - ./docker-compose/proxy/http-server.template.conf:/etc/nginx/http-server.template.conf
+      - ./docker-compose/proxy/src:/etc/nginx/src
+      - ./docker-compose/proxy/conf.d:/etc/nginx/conf.d
+    links:
+      - frontend
+    depends_on:
+      - frontend
+
+  # Frontend
+  # Image: ./docker-compose/frontend/Dockerfile
+  frontend:
+    container_name: frontend
+    build:
+      context: ./docker-compose/frontend
+    environment:
+      REACT_APP_API_URL: "${REACT_APP_API_URL}"
+    restart: unless-stopped
+    volumes:
+      - ./poster-client-react:/var/www

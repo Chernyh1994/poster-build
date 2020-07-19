@@ -1,6 +1,6 @@
-[submodule "poster-laravel-api-server"]
+[submodule "backend"]
 	path = poster-laravel-api-server
 	url = git://github.com/Chernyh1994/poster-laravel-api-server
-[submodule "poster-client-react"]
+[submodule "frontend"]
 	path = poster-client-react
 	url = git://github.com/Chernyh1994/poster-client-react
