@@ -30,5 +30,3 @@ git submodule update
 
 composer install  --working-dir=$PWD/poster-laravel-api-server --ignore-platform-reqs
 yarn --cwd $PWD/poster-client-react
-
-docker-compose up --build -d proxy
